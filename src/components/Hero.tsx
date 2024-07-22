@@ -6,6 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import { BiArrowBack } from "react-icons/bi";
 import { urlForImage } from "../../sanity/lib/image";
+import Image from "next/image";
 
 interface BannerImages {
   image1: any;
@@ -40,7 +41,11 @@ const Hero = ({ image1, image2, image3 }: BannerImages) => {
         )}
       >
         <div>
-          <img
+          <Image
+            alt="Hero Image"
+            height={700}
+            width={700}
+            quality={100}
             src={urlForImage(image1)}
             className="aspect-[16/10] md:aspect-auto object-cover"
           />
@@ -50,7 +55,11 @@ const Hero = ({ image1, image2, image3 }: BannerImages) => {
         </div>
 
         <div>
-          <img
+          <Image
+            alt="Hero Image"
+            height={700}
+            width={700}
+            quality={100}
             src={urlForImage(image2)}
             className="aspect-[16/10] md:aspect-auto object-cover"
           />
@@ -60,7 +69,11 @@ const Hero = ({ image1, image2, image3 }: BannerImages) => {
         </div>
 
         <div>
-          <img
+          <Image
+            alt="Hero Image"
+            height={700}
+            width={700}
+            quality={100}
             src={urlForImage(image3)}
             className="aspect-[16/10] md:aspect-auto object-cover"
           />
