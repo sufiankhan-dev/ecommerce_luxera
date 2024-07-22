@@ -22,6 +22,12 @@ export default defineType({
       type: "text",
     }),
     defineField({
+      name: "compositionAndCare",
+      title: "Composition and Care",
+      type: "array",
+      of: [{ type: "string" }],
+    }),
+    defineField({
       name: "slug",
       title: "Product slug",
       type: "slug",
@@ -34,6 +40,11 @@ export default defineType({
       name: "price",
       title: "Price",
       type: "number",
+    }),
+    defineField({
+      name: "price_id",
+      title: "Stripe price ID",
+      type: "string",
     }),
     defineField({
       name: "category",

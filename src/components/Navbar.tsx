@@ -3,42 +3,61 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { HiOutlineShoppingBag } from "react-icons/hi2";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { Button } from "./ui/button";
-import { MdOutlineShoppingCart } from "react-icons/md";
+import { LogInIcon, LogOutIcon, User } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useShoppingCart } from "use-shopping-cart";
+import CategoriesMenu, { CategoryProps } from "./CategoriesMenu";
+import { HiOutlineMenuAlt2 } from "react-icons/hi";
+import { CategoriesItems } from "../../type";
 
 const links = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Men", href: "/men" },
-  { name: "Women", href: "/women" },
+  { name: "Men", href: `/category/men` },
+  { name: "Women", href: `/category/women` },
 ];
 
-const Navbar = () => {
+const Navbar = ({ Mensdata, Womensdata }: CategoriesItems) => {
+  const { handleCartClick } = useShoppingCart();
   const pathname = usePathname();
+  const { data: session } = useSession();
   return (
-    <header className="mb-8">
-      <div className="w-full flex justify-between items-center h-11 px-4 md:px-20 lg:px-32 border-b container max-w-screen-2xl">
-        <div className="flex flex-row gap-1">
+    <header>
+      <div className="w-full flex justify-between items-center h-12 py-7 px-4 md:px-8 lg:px-32 container max-w-screen-2xl">
+        <div className="flex flex-row gap-2">
+          {/* <div className="hover:scale-105 transform transition-transform duration-200">
+            <HiOutlineMenuAlt2 className="h-8 w-8 md:h-10" />
+          </div> */}
+          <CategoriesMenu MensData={Mensdata} WomensData={Womensdata} />
           <Link href={"/"}>
-            <Image src={"/logo.png"} height={35} width={35} alt="logo" />
+            <span className="text-2xl md:text-4xl font-extrabold italic flex items-center">
+              Luxera
+            </span>
           </Link>
-          <span className="text-xl font-semibold lg:hidden flex items-center">
-            Luxera
-          </span>
         </div>
-        <div className="hidden gap-8 md:flex 2xl:ml-16">
+        {/* <div className="hidden gap-8 md:flex 2xl:ml-16">
           {links.map((link, idx) => (
             <div key={idx}>
               {pathname === link.href ? (
                 <Link
-                  className="relative text-sm font-semibold text-primary hover:text-primary cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-500 before:absolute before:bg-primary before:origin-center before:h-[1px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-500 after:absolute after:bg-primary after:origin-center after:h-[1px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%]"
+                  className="relative text-sm font-medium text-primary hover:text-primary cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-500 before:absolute before:bg-primary before:origin-center before:h-[1px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-500 after:absolute after:bg-primary after:origin-center after:h-[1px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%]"
                   href={link.href}
                 >
                   {link.name}
                 </Link>
               ) : (
                 <Link
-                  className="relative text-sm font-semibold text-gray-500 hover:text-primary cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-500 before:absolute before:bg-primary before:origin-center before:h-[1px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-500 after:absolute after:bg-primary after:origin-center after:h-[1px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%]"
+                  className="relative text-sm font-medium text-gray-500 hover:text-primary cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-500 before:absolute before:bg-primary before:origin-center before:h-[1.5px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-500 after:absolute after:bg-primary after:origin-center after:h-[1.5px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%]"
                   href={link.href}
                 >
                   {link.name}
@@ -46,18 +65,56 @@ const Navbar = () => {
               )}
             </div>
           ))}
-        </div>
-        <div className="cursor-pointer border-x md:border-none -mr-2">
-          <Button variant={"ghost"}>
-            <MdOutlineShoppingCart className="h-6 w-6" />
-          </Button>
-        </div>
-        {/* <div className="text-sm flex gap-2">
-          <Link href={"/"}>Women</Link>
-          <Link href={"/"}>Men</Link>
-          <Link href={"/"}>Workspace</Link>
-          <Link href={"/"}>Productivity</Link>
         </div> */}
+        <div className="cursor-pointer border-x md:border-none -mr-2 flex flex-row items-center gap-5">
+          <div
+            className="hover:scale-110 transform transition-transform duration-200"
+            onClick={() => handleCartClick()}
+          >
+            <HiOutlineShoppingBag className="h-6 w-6" />
+          </div>
+          {/* Login button  */}
+          {!session && (
+            <Button
+              onClick={() => signIn()}
+              className="hidden md:flex uppercase text-lg gap-2 rounded-md bg-black px-3 font-normal"
+            >
+              <LogInIcon />
+              <p>Login</p>
+            </Button>
+          )}
+
+          {/* user image  */}
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              {session && (
+                <Image
+                  src={session?.user?.image as string}
+                  alt="user Image"
+                  width={35}
+                  height={35}
+                  className="rounded-full object-cover border-none hover:scale-105 duration-200"
+                />
+              )}
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel className="flex gap-x-2 items-center">
+                <User className="h-5 w-6" />
+                <span className="text-[15px] font-medium">
+                  {session?.user?.name}
+                </span>
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                className="gap-x-2 items-center"
+                onClick={() => signOut()}
+              >
+                <LogOutIcon className="h-5 w-6" />
+                <span className="text-[15px] font-medium">Logout</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
     </header>
   );
