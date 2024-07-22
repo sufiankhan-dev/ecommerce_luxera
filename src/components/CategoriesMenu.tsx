@@ -23,7 +23,7 @@ export default function CategoriesMenu({
   const [selectedCategory, setSelectedCategory] = useState<"men" | "women">(
     "men"
   );
-  console.log(MensData);
+  // console.log(MensData);
 
   return (
     <Sheet>
