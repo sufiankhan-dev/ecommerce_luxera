@@ -13,7 +13,7 @@ const DeliveryAndReturnDailog = () => {
   return (
     <div>
       <Dialog>
-        <DialogTrigger className="font-bold text-sm pt-4 uppercase">
+        <DialogTrigger className="font-bold text-sm pt-4 uppercase hidden md:block">
           Deliveries & return
         </DialogTrigger>
         <DialogContent className="w-xl">

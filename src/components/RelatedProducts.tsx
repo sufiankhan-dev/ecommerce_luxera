@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 const RelatedProducts = ({ products }: any) => {
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-screen-xl px-4 md:px-8 py-5 sm:py-10">
+      <div className="mx-auto max-w-screen-xl px-2 md:px-8 py-3 sm:py-10">
         <div className="flex justify-between items-center">
           <h2 className="text-xl md:text-2xl font-bold tracking-tight text-gray-900 uppercase">
             Recommended Products
@@ -37,7 +37,7 @@ const RelatedProducts = ({ products }: any) => {
 
                   <div className="mt-4 flex-col justify-between">
                     <div>
-                      <h3 className="text-sm text-gray-700 uppercase max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap">
+                      <h3 className="text-sm text-gray-700 uppercase max-w-[300px] overflow-hidden text-ellipsis whitespace-nowrap">
                         {product.name}
                       </h3>
                       {/* <p className="mt-1 text-sm text-gray-500">

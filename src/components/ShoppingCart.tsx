@@ -6,14 +6,17 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Delete, MinusIcon, PlusIcon, Trash2 } from "lucide-react";
+import { MinusIcon, PlusIcon, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useShoppingCart } from "use-shopping-cart";
 import { Button } from "./ui/button";
-import { useSession, signIn } from "next-auth/react";
 import { useState } from "react";
+import { useSession, signIn } from "next-auth/react";
+import Link from "next/link";
+import { BiErrorCircle } from "react-icons/bi";
 
 const ShoppingCart = () => {
+  const { data: session } = useSession();
   const {
     cartCount,
     shouldDisplayCart,
@@ -27,18 +30,34 @@ const ShoppingCart = () => {
     clearCart,
   } = useShoppingCart();
 
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   async function handleCheckoutClick(event: any) {
     event.preventDefault();
+    if (!session) {
+      setErrorMessage("To Checkout!");
+      return;
+    }
+    setErrorMessage("");
+    setIsCheckingOut(true);
     try {
-      clearCart();
+      console.log("Cart before checkout:", cartDetails); // Log cart details before checkout
       const result = await redirectToCheckout();
       if (result?.error) {
-        console.log("result");
+        console.log("Checkout error:", result.error);
+      } else {
+        console.log("Checkout successful, clearing cart");
+        clearCart();
+        console.log("Cart after clearing:", cartDetails); // Log cart details after clearing
       }
     } catch (error) {
-      console.log(error);
+      console.log("Checkout exception:", error);
+    } finally {
+      setIsCheckingOut(false);
     }
   }
+
   return (
     <Sheet open={shouldDisplayCart} onOpenChange={() => handleCartClick()}>
       <SheetContent className="sm:max-w-lg w-[90vw]">
@@ -126,12 +145,36 @@ const ShoppingCart = () => {
             <p className=" text-sm text-gray-500 font-light">
               Shipping and taxes will be calculated at checkout.
             </p>
-            <div className="mt-6">
+            {errorMessage && (
+              <p className="text-sm text-red-500 font-light mt-6 flex flex-row items-center">
+                <span
+                  onClick={() => signIn()}
+                  className="underline cursor-pointer pr-1"
+                >
+                  <span className="flex flex-row gap-x-2 items-center">
+                    <BiErrorCircle />
+                    Login
+                  </span>
+                </span>
+                {errorMessage}
+              </p>
+            )}
+            <div className="mt-1">
               <Button
                 onClick={handleCheckoutClick}
                 className="w-full bg-black rounded-none uppercase"
+                disabled={isCheckingOut}
               >
-                checkout
+                {isCheckingOut ? (
+                  <Image
+                    src="/spinner.svg"
+                    alt="Loading"
+                    width={20}
+                    height={20}
+                  />
+                ) : (
+                  "checkout"
+                )}
               </Button>
             </div>
             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">

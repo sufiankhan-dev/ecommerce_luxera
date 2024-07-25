@@ -8,6 +8,7 @@ import DeliveryAndReturnDialog from "@/components/DeliveryAndReturnDailog";
 import AddToCart from "@/components/AddToCart";
 import RelatedProducts from "@/components/RelatedProducts";
 import { Toggle } from "@/components/ui/toggle";
+import DescriptionDropdown from "@/components/DescriptionDropdown";
 
 async function getData(slug: string) {
   const query = `*[_type == 'product' && slug.current == "${slug}"][0]{
@@ -80,18 +81,18 @@ const page = async ({ params }: { params: { slug: string } }) => {
               <div className="flex flex-row items-baseline gap-x-2">
                 {data.salePercent ? (
                   <div className="flex flex-row gap-x-3">
-                    <span className="text-xl font-bold text-black md:text-lg flex flex-row gap-x-6 items-center">
+                    <span className="text-lg font-bold text-black md:text-lg flex flex-row gap-x-6 items-center">
                       <span className="font-bold uppercase">Price:</span>
                       <span className="line-through text-gray-700">
                         ${data.price.toFixed(2)}
                       </span>
                     </span>{" "}
                     <div className="bg-yellow-300 flex flex-row px-2 gap-x-3">
-                      <span className="text-xl font-medium text-gray-900 md:text-lg">
+                      <span className="text-lg font-medium text-gray-900 md:text-lg">
                         ${discountedPrice}
                       </span>
                       {data.salePercent && (
-                        <p className="text-xl font-medium text-gray-900 md:text-lg">
+                        <p className="text-lg font-medium text-gray-900 md:text-lg">
                           -{data.salePercent}%
                         </p>
                       )}
@@ -168,13 +169,13 @@ const page = async ({ params }: { params: { slug: string } }) => {
             )}
 
             {/* description  */}
-            <div className="text-sm text-gray-700 pt-5 leading-relaxed uppercase">
+            <div className="text-sm text-gray-700 pt-5 leading-relaxed uppercase hidden md:block">
               <p>{data.description}</p>
             </div>
 
             {/* Composition and Care  */}
             {data.compositionAndCare && data.compositionAndCare.length > 0 && (
-              <div className="uppercase flex-col pt-5">
+              <div className="uppercase flex-col pt-5 hidden md:block">
                 <span className="font-bold text-sm">Composition & Care</span>
                 <div className="pt-4 text-gray-700 leading-relaxed text-sm">
                   {data.compositionAndCare.map((item, index) => (
@@ -186,6 +187,12 @@ const page = async ({ params }: { params: { slug: string } }) => {
 
             {/* Link of delivery and return  */}
             <DeliveryAndReturnDialog />
+
+            {/* mobile product data dropdown  */}
+            <DescriptionDropdown
+              description={data.description}
+              compositionAndCare={data.compositionAndCare}
+            />
           </div>
         </div>
         <div className="mt-10">
