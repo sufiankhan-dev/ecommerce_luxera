@@ -5,6 +5,7 @@ export interface simplifiedProduct {
   slug: string;
   categoryName: string;
   name: string;
+  salePercent: number;
 }
 
 export interface fullProductData {
@@ -17,6 +18,10 @@ export interface fullProductData {
   description: string;
   price_id: string;
   compositionAndCare: string[];
+  colors: any;
+  sizes: any;
+  salePercent: number;
+  fit: string;
 }
 
 export interface DeliveryAndReturnData {
@@ -33,4 +38,15 @@ export interface HeroImages {
 export interface CategoriesItems {
   Mensdata: any;
   Womensdata: any;
+}
+
+export interface CollectionsData {
+  _id: string;
+  imageUrl: string;
+  price: number;
+  slug: string;
+  categoryName: string;
+  name: string;
+  collectionName: string;
+  salePercent: number;
 }

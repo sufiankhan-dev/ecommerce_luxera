@@ -26,7 +26,6 @@ async function getMensData() {
 `;
 
   const data = await client.fetch(query);
-  console.log(data);
 
   return data;
 }

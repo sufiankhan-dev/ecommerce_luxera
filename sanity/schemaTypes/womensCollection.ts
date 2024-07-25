@@ -16,7 +16,6 @@ export default defineType({
       type: "slug",
       options: {
         source: "collectionName",
-        slugify: (input) => `women/${input.toLowerCase().replace(/\s+/g, "-")}`,
       },
     }),
   ],

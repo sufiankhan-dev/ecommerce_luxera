@@ -6,10 +6,12 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Delete, Trash2 } from "lucide-react";
+import { Delete, MinusIcon, PlusIcon, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useShoppingCart } from "use-shopping-cart";
 import { Button } from "./ui/button";
+import { useSession, signIn } from "next-auth/react";
+import { useState } from "react";
 
 const ShoppingCart = () => {
   const {
@@ -20,11 +22,15 @@ const ShoppingCart = () => {
     removeItem,
     totalPrice,
     redirectToCheckout,
+    incrementItem,
+    decrementItem,
+    clearCart,
   } = useShoppingCart();
 
   async function handleCheckoutClick(event: any) {
     event.preventDefault();
     try {
+      clearCart();
       const result = await redirectToCheckout();
       if (result?.error) {
         console.log("result");
@@ -43,7 +49,14 @@ const ShoppingCart = () => {
           <div className="mt-8 flex-1 overflow-y-auto">
             <ul className="-my-6 divide-y divide-gray-200">
               {cartCount === 0 ? (
-                <h1 className="py-6">You don't have any items</h1>
+                <div className="flex items-center justify-center w-full h-full">
+                  <Image
+                    src={"/empty-cart.jpg"}
+                    alt="Empty cart Image"
+                    width={300}
+                    height={300}
+                  />
+                </div>
               ) : (
                 <>
                   {Object.values(cartDetails ?? {}).map((entry) => (
@@ -60,7 +73,9 @@ const ShoppingCart = () => {
                       <div className="ml-4 flex flex-1 flex-col">
                         <div>
                           <div className="flex justify-between text-base font-medium text-gray-900">
-                            <h3>{entry.name}</h3>
+                            <h3 className="line-clamp-1 sm:line-clamp-2">
+                              {entry.name}
+                            </h3>
                             <p className="ml-4">${entry.price}</p>
                           </div>
                           <p className="mt-1 text-sm text-gray-500 line-clamp-2">
@@ -68,8 +83,23 @@ const ShoppingCart = () => {
                           </p>
                         </div>
                         <div className="flex flex-1 items-end justify-between text-sm">
-                          <p className="text-gray-500">QTY: {entry.quantity}</p>
-
+                          <div className="flex flex-row items-center gap-x-1">
+                            <span
+                              onClick={() => decrementItem(entry.id)}
+                              className="cursor-pointer"
+                            >
+                              <MinusIcon className="w-5 h-5" />
+                            </span>
+                            <p className="text-gray-500">
+                              QTY: {entry.quantity}
+                            </p>
+                            <span
+                              onClick={() => incrementItem(entry.id)}
+                              className="cursor-pointer"
+                            >
+                              <PlusIcon className="w-5 h-5" />
+                            </span>
+                          </div>
                           <div className="flex">
                             <button
                               type="button"

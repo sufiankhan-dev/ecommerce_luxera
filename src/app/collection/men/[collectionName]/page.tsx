@@ -1,35 +1,37 @@
 import React from "react";
-import { client } from "../../../../sanity/lib/client";
-import { simplifiedProduct } from "../../../../type";
-import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { CollectionsData, simplifiedProduct } from "../../../../../type";
+import { client } from "../../../../../sanity/lib/client";
 
-async function getData(category: string) {
-  const query = `*[_type == 'product' && category->name == "${category}"]{
+async function getData(collectionName: string) {
+  const query = `*[_type == 'product' && category->name == "men" && collectionSlug.current == "${collectionName}"]{
   _id,
     "imageUrl": image[0].asset->url,
       price,
     name,
     "slug": slug.current,
     "categoryName": category->name,
-    salePercent
+  "collectionName": collection->collectionName,
+   "collectionSlug": collectionSlug.current,
+   salePercent
 }`;
+
   const data = await client.fetch(query);
 
   return data;
 }
 
-const CategoryPage = async ({ params }: { params: { category: string } }) => {
-  const data: simplifiedProduct[] = await getData(params.category);
+const MensCollection = async ({
+  params,
+}: {
+  params: { collectionName: string };
+}) => {
+  const data: CollectionsData[] = await getData(params.collectionName);
   return (
     <div className="bg-white">
-      <div className="mx-auto mx-w-2xl px-4 py-5 sm:px-6 lg:mx-w-7xl lg:px-32">
-        <div className="flex justify-between items-center">
-          <h2 className="text-xl md:text-2xl font-medium tracking-tight text-gray-900 uppercase">
-            {params.category}'s Collection
-          </h2>
-        </div>
-
+      <div className="mx-auto mx-w-2xl px-4 py-5 sm:px-6 sm:py-10 lg:mx-w-7xl lg:px-32">
         <div className="mt-6 grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {data.map((product) => {
             const discountedPrice = product.salePercent
@@ -38,7 +40,6 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
                   (product.price * product.salePercent) / 100
                 ).toFixed(2)
               : null;
-
             return (
               <div key={product._id} className="group relative">
                 <Link href={`/product/${product.slug}`}>
@@ -98,4 +99,4 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
   );
 };
 
-export default CategoryPage;
+export default MensCollection;
