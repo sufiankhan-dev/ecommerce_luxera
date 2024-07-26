@@ -13,7 +13,8 @@ async function getData() {
     "slug": slug.current,
     "categoryName": category->name,
     "imageUrl": image[0].asset->url,
-    salePercent
+    salePercent,
+    colors
 }`;
 
   const data = await client.fetch(query);
@@ -66,13 +67,27 @@ const Newest = async () => {
                   </div>
 
                   <div className="mt-4 flex-col justify-between">
-                    <div>
+                    <div className="flex flex-row justify-between">
                       <h3 className="text-sm text-gray-700 uppercase max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap">
                         {product.name}
                       </h3>
                       {/* <p className="mt-1 text-sm text-gray-500">
-                      {product.categoryName}
-                    </p> */}
+                        {product.categoryName}
+                      </p> */}
+                      {product.colors && (
+                        <div className="flex gap-x-8 items-center">
+                          <div className="flex gap-x-1">
+                            {product.colors.map((color: any, index: any) => (
+                              <div
+                                key={index}
+                                className="w-3 h-3 rounded-full border border-black cursor-pointer"
+                                style={{ backgroundColor: color }}
+                                title={color} // Display hex code as a tooltip
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
                     <div>
                       {/* <p className="text-sm font-medium text-gray-900">

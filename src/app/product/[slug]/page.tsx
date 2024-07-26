@@ -38,7 +38,8 @@ async function getRelatedProducts(categoryName: string, currentSlug: string) {
     price,
     "imageUrl": image[0].asset->url,
     "slug": slug.current,
-    salePercent
+    salePercent,
+    colors
   }`;
   const relatedProducts = await client.fetch(query);
   return relatedProducts;

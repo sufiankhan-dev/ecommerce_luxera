@@ -66,7 +66,7 @@ const Navbar = ({ Mensdata, Womensdata }: CategoriesItems) => {
             </div>
           ))}
         </div> */}
-        <div className="cursor-pointer border-x md:border-none -mr-2 flex flex-row items-center gap-5">
+        <div className="cursor-pointer border-x md:border-none flex flex-row items-center gap-5">
           <div
             className="hover:scale-110 transform transition-transform duration-200"
             onClick={() => handleCartClick()}
@@ -75,45 +75,46 @@ const Navbar = ({ Mensdata, Womensdata }: CategoriesItems) => {
           </div>
           {/* Login button  */}
           {!session && (
-            <Button
+            <div
               onClick={() => signIn()}
-              className="hidden md:flex uppercase text-lg gap-2 rounded-md bg-black px-3 font-normal"
+              className="relative hidden md:flex uppercase text-lg gap-x-2 rounded-md mx-3 font-normal mt-1 tracking-wider hover:text-black cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-500 before:absolute before:bg-black before:origin-center before:h-[1.5px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-500 after:absolute after:bg-black after:origin-center after:h-[1.5px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%]"
             >
-              <LogInIcon />
               <p>Login</p>
-            </Button>
+            </div>
           )}
 
           {/* user image  */}
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              {session && (
-                <Image
-                  src={session?.user?.image as string}
-                  alt="user Image"
-                  width={35}
-                  height={35}
-                  className="rounded-full object-cover border-none hover:scale-105 duration-200"
-                />
-              )}
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel className="flex gap-x-2 items-center">
-                <User className="h-5 w-6" />
-                <span className="text-[15px] font-medium">
-                  {session?.user?.name}
-                </span>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
-                className="gap-x-2 items-center"
-                onClick={() => signOut()}
-              >
-                <LogOutIcon className="h-5 w-6" />
-                <span className="text-[15px] font-medium">Logout</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <div className="hidden md:flex">
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                {session && (
+                  <Image
+                    src={session?.user?.image as string}
+                    alt="user Image"
+                    width={35}
+                    height={35}
+                    className="rounded-full object-cover border-none hover:scale-105 duration-200"
+                  />
+                )}
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel className="flex gap-x-2 items-center">
+                  <User className="h-5 w-6" />
+                  <span className="text-[15px] font-medium">
+                    {session?.user?.name}
+                  </span>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  className="gap-x-2 items-center"
+                  onClick={() => signOut()}
+                >
+                  <LogOutIcon className="h-5 w-6" />
+                  <span className="text-[15px] font-medium">Logout</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </div>
     </header>

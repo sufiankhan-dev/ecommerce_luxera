@@ -2,21 +2,19 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import { CollectionsData, simplifiedProduct } from "../../../../../type";
-import { client } from "../../../../../sanity/lib/client";
+import { simplifiedProduct } from "../../../type";
+import { client } from "../../../sanity/lib/client";
 
-async function getData(collectionName: string) {
-  const query = `*[_type == 'product' && category->name == "men" && collectionSlug.current == "${collectionName}"]{
+async function getData() {
+  const query = `*[_type == 'product'] | order(_createdAt desc){
   _id,
-    "imageUrl": image[0].asset->url,
-      price,
+    price,
     name,
     "slug": slug.current,
     "categoryName": category->name,
-  "collectionName": collection->collectionName,
-   "collectionSlug": collectionSlug.current,
-   salePercent,
-   colors
+    "imageUrl": image[0].asset->url,
+    salePercent,
+    colors
 }`;
 
   const data = await client.fetch(query);
@@ -24,15 +22,18 @@ async function getData(collectionName: string) {
   return data;
 }
 
-const MensCollection = async ({
-  params,
-}: {
-  params: { collectionName: string };
-}) => {
-  const data: CollectionsData[] = await getData(params.collectionName);
+const Newest = async () => {
+  const data: simplifiedProduct[] = await getData();
+
   return (
     <div className="bg-white">
       <div className="mx-auto mx-w-2xl px-4 py-5 sm:px-6 sm:py-10 lg:mx-w-7xl lg:px-32">
+        <div className="flex justify-between items-center">
+          <h2 className="text-xl md:text-2xl font-medium tracking-tight text-gray-900 uppercase">
+            All Products
+          </h2>
+        </div>
+
         <div className="mt-6 grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {data.map((product) => {
             const discountedPrice = product.salePercent
@@ -41,6 +42,7 @@ const MensCollection = async ({
                   (product.price * product.salePercent) / 100
                 ).toFixed(2)
               : null;
+
             return (
               <div key={product._id} className="group relative">
                 <Link href={`/product/${product.slug}`}>
@@ -60,8 +62,8 @@ const MensCollection = async ({
                         {product.name}
                       </h3>
                       {/* <p className="mt-1 text-sm text-gray-500">
-                      {product.categoryName}
-                    </p> */}
+                        {product.categoryName}
+                      </p> */}
                       {product.colors && (
                         <div className="flex gap-x-8 items-center">
                           <div className="flex gap-x-1">
@@ -114,4 +116,4 @@ const MensCollection = async ({
   );
 };
 
-export default MensCollection;
+export default Newest;

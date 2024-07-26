@@ -6,6 +6,7 @@ export interface simplifiedProduct {
   categoryName: string;
   name: string;
   salePercent: number;
+  colors: any;
 }
 
 export interface fullProductData {
@@ -49,4 +50,5 @@ export interface CollectionsData {
   name: string;
   collectionName: string;
   salePercent: number;
+  colors: any;
 }

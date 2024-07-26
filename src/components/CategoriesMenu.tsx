@@ -10,7 +10,28 @@ import {
 } from "@/components/ui/sheet";
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  LogInIcon,
+  LogOutIcon,
+  Truck,
+  TruckIcon,
+  User,
+} from "lucide-react";
+import { Button } from "./ui/button";
+import { signIn, signOut, useSession } from "next-auth/react";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import Image from "next/image";
+import { Switch } from "./ui/switch";
+import { Label } from "./ui/label";
 
 export interface CategoryProps {
   MensData: Array<{ collectionName: string; collectionSlug: string }>;
@@ -29,6 +50,8 @@ export default function CategoriesMenu({
   const closeSheet = () => {
     setIsSheetOpen(false);
   };
+
+  const { data: session } = useSession();
 
   return (
     <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
@@ -118,6 +141,63 @@ export default function CategoriesMenu({
               ))}
             </ul>
           )}
+        </div>
+        <div className="flex flex-row gap-x-2 pt-6 font-bold uppercase cursor-pointer">
+          <p>Track you order</p>
+          <TruckIcon />
+        </div>
+        <div className="flex items-center space-x-2 pt-2">
+          <p className="uppercase font-bold">Dark Mode</p>
+          <Switch />
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 flex md:hidden justify-between p-4 items-center">
+          <Link
+            href={"/"}
+            className="px-4 py-2 font-medium uppercase cursor-pointer"
+          >
+            Home
+          </Link>
+          {!session && (
+            <div
+              onClick={() => signIn()}
+              className="uppercase font-medium right-0 absolute px-4 py-2 cursor-pointer"
+            >
+              <p>Login</p>
+            </div>
+          )}
+
+          {/* user image  */}
+          <div>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                {session && (
+                  <Image
+                    src={session?.user?.image as string}
+                    alt="user Image"
+                    width={35}
+                    height={35}
+                    className="rounded-full object-cover border-none hover:scale-105 duration-200"
+                  />
+                )}
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel className="flex gap-x-2 items-center">
+                  <User className="h-5 w-6" />
+                  <span className="text-[15px] font-medium">
+                    {session?.user?.name}
+                  </span>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  className="gap-x-2 items-center"
+                  onClick={() => signOut()}
+                >
+                  <LogOutIcon className="h-5 w-6" />
+                  <span className="text-[15px] font-medium">Logout</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </SheetContent>
     </Sheet>

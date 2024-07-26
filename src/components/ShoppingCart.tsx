@@ -60,7 +60,7 @@ const ShoppingCart = () => {
 
   return (
     <Sheet open={shouldDisplayCart} onOpenChange={() => handleCartClick()}>
-      <SheetContent className="sm:max-w-lg w-[90vw]">
+      <SheetContent className="sm:max-w-lg w-[100vw]">
         <SheetHeader>
           <SheetTitle className="uppercase">Your Cart</SheetTitle>
         </SheetHeader>
