@@ -37,11 +37,11 @@ const Footer = () => {
             <div className="tracking-widest uppercase text-sm">
               Can we help you?
             </div>
-            <div className="tracking-widest uppercase text-[12px] flex flex-row gap-x-24  md:gap-0 md:flex-col leading-relaxed">
+            <div className="tracking-widest uppercase text-[12px] flex gap-x-24  md:gap-0 flex-col leading-relaxed">
               <span>Send Email</span>
               <span className="cursor-pointer">Contactus@luxera.com.pk</span>
             </div>
-            <div className="tracking-widest uppercase text-[12px] flex flex-row md:flex-col gap-x-[38px] md:gap-0 leading-relaxed pt-4">
+            <div className="tracking-widest uppercase text-[12px] flex flex-col gap-x-[38px] md:gap-0 leading-relaxed pt-4">
               <span className="cursor-pointer">UAN: 042 111-12-6423</span>
               <span>MON-FRI 9:00 to 5:30 PSt</span>
             </div>
