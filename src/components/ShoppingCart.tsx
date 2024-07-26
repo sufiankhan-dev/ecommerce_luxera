@@ -60,11 +60,11 @@ const ShoppingCart = () => {
 
   return (
     <Sheet open={shouldDisplayCart} onOpenChange={() => handleCartClick()}>
-      <SheetContent className="sm:max-w-lg w-[100vw]">
+      <SheetContent className="sm:max-w-lg w-[90vw]">
         <SheetHeader>
           <SheetTitle className="uppercase">Your Cart</SheetTitle>
         </SheetHeader>
-        <div className="h-full flex flex-col justify-between -mx-7">
+        <div className="h-full flex flex-col justify-between -mx-6">
           <div className="mt-8 flex-1 overflow-y-auto">
             <ul className="-my-6 divide-y divide-gray-200">
               {cartCount === 0 ? (
