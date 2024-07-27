@@ -51,6 +51,8 @@ const MensCollection = async ({
                       className="object-cover w-full h-full object-center lg:h-full lg:w-full"
                       width={300}
                       height={300}
+                      priority
+                      quality={100}
                     />
                   </div>
 

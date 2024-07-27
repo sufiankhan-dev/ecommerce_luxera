@@ -63,6 +63,8 @@ const Newest = async () => {
                       className="object-cover w-full h-full object-center lg:h-full lg:w-full"
                       width={300}
                       height={300}
+                      quality={100}
+                      priority
                     />
                   </div>
 
