@@ -34,9 +34,6 @@ const Navbar = ({ Mensdata, Womensdata }: CategoriesItems) => {
     <header>
       <div className="w-full flex justify-between items-center h-12 py-7 px-4 md:px-8 lg:px-32 container max-w-screen-2xl">
         <div className="flex flex-row gap-2">
-          {/* <div className="hover:scale-105 transform transition-transform duration-200">
-            <HiOutlineMenuAlt2 className="h-8 w-8 md:h-10" />
-          </div> */}
           <CategoriesMenu MensData={Mensdata} WomensData={Womensdata} />
           <Link href={"/"}>
             <span className="text-2xl md:text-4xl font-extrabold italic flex items-center">
