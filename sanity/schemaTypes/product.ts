@@ -100,14 +100,10 @@ export default defineType({
     defineField({
       name: "collectionSlug",
       title: "Collection Slug",
-      type: "slug",
+      type: "string",
       description:
         "Must add this according to the nme of collection for some reasons auto generate is not working for spaces use (-) and for this & use (and)",
       validation: (Rule) => Rule.required(),
-      options: {
-        source: "collection",
-        maxLength: 96,
-      },
     }),
   ],
 });

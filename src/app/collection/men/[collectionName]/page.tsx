@@ -6,7 +6,7 @@ import { CollectionsData, simplifiedProduct } from "../../../../../type";
 import { client } from "../../../../../sanity/lib/client";
 
 async function getData(collectionName: string) {
-  const query = `*[_type == 'product' && category->name == "men" && collectionSlug.current == "${collectionName}"]{
+  const query = `*[_type == 'product' && category->name == "men" && collectionSlug == "${collectionName}"]{
   _id,
     "imageUrl": image[0].asset->url,
       price,
@@ -14,7 +14,7 @@ async function getData(collectionName: string) {
     "slug": slug.current,
     "categoryName": category->name,
   "collectionName": collection->collectionName,
-   "collectionSlug": collectionSlug.current,
+   "collectionSlug": collectionSlug,
    salePercent,
    colors
 }`;

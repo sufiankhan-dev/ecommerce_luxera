@@ -65,7 +65,7 @@ const Navbar = ({ Mensdata, Womensdata }: CategoriesItems) => {
             </div>
           ))}
         </div> */}
-        <div className="cursor-pointer border-x md:border-none flex flex-row items-center gap-5">
+        <div className="cursor-pointer border-l md:border-none flex flex-row items-center gap-5">
           <div
             className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:scale-110 transform transition-transform duration-200 cursor-pointer relative -mr-2"
             onClick={() => handleCartClick()}
