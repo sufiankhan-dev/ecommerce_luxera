@@ -20,6 +20,7 @@ async function getData(slug: string) {
     compositionAndCare,
     "slug": slug.current,
     "categoryName": category->name,
+    collectionSlug,
     price_id,
     sizes,
     colors,
@@ -31,13 +32,18 @@ async function getData(slug: string) {
   return data;
 }
 
-async function getRelatedProducts(categoryName: string, currentSlug: string) {
-  const query = `*[_type == 'product' && category->name == "${categoryName}" && slug.current != "${currentSlug}"]{
+async function getRelatedProducts(
+  categoryName: string,
+  currentSlug: string,
+  collectionSlug: string
+) {
+  const query = `*[_type == 'product' && category->name == "${categoryName}" && slug.current != "${currentSlug}" && collectionSlug == "${collectionSlug}"]{
     _id,
     name,
     price,
     "imageUrl": image[0].asset->url,
     "slug": slug.current,
+    collectionSlug,
     salePercent,
     colors
   }`;
@@ -49,7 +55,8 @@ const page = async ({ params }: { params: { slug: string } }) => {
   const data: fullProductData = await getData(params.slug);
   const relatedProducts = await getRelatedProducts(
     data.categoryName,
-    data.slug
+    data.slug,
+    data.collectionSlug
   );
   const discountedPrice = data.salePercent
     ? (data.price - (data.price * data.salePercent) / 100).toFixed(2)

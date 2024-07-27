@@ -19,6 +19,7 @@ export interface fullProductData {
   description: string;
   price_id: string;
   compositionAndCare: string[];
+  collectionSlug: string;
   colors: any;
   sizes: any;
   salePercent: number;
