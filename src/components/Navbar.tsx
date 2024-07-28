@@ -31,7 +31,7 @@ const Navbar = ({ Mensdata, Womensdata }: CategoriesItems) => {
   const { data: session } = useSession();
 
   return (
-    <header>
+    <header className="sticky top-0 z-50">
       <div className="w-full flex justify-between items-center h-12 py-7 px-4 md:px-8 lg:px-32 container max-w-screen-2xl">
         <div className="flex flex-row gap-2">
           <CategoriesMenu MensData={Mensdata} WomensData={Womensdata} />
@@ -41,27 +41,6 @@ const Navbar = ({ Mensdata, Womensdata }: CategoriesItems) => {
             </span>
           </Link>
         </div>
-        {/* <div className="hidden gap-8 md:flex 2xl:ml-16">
-          {links.map((link, idx) => (
-            <div key={idx}>
-              {pathname === link.href ? (
-                <Link
-                  className="relative text-sm font-medium text-primary hover:text-primary cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-500 before:absolute before:bg-primary before:origin-center before:h-[1px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-500 after:absolute after:bg-primary after:origin-center after:h-[1px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%]"
-                  href={link.href}
-                >
-                  {link.name}
-                </Link>
-              ) : (
-                <Link
-                  className="relative text-sm font-medium text-gray-500 hover:text-primary cursor-pointer transition-all ease-in-out before:transition-[width] before:ease-in-out before:duration-500 before:absolute before:bg-primary before:origin-center before:h-[1.5px] before:w-0 hover:before:w-[50%] before:bottom-0 before:left-[50%] after:transition-[width] after:ease-in-out after:duration-500 after:absolute after:bg-primary after:origin-center after:h-[1.5px] after:w-0 hover:after:w-[50%] after:bottom-0 after:right-[50%]"
-                  href={link.href}
-                >
-                  {link.name}
-                </Link>
-              )}
-            </div>
-          ))}
-        </div> */}
         <div className="cursor-pointer border-l md:border-none flex flex-row items-center gap-5">
           <div
             className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:scale-110 transform transition-transform duration-200 cursor-pointer relative -mr-2"
