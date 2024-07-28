@@ -139,7 +139,7 @@ const ShoppingCart = () => {
           <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
             <div className="flex justify-between items-center text-base font-medium text-gray-900">
               <p className="uppercase font-medium">Subtotal:</p>
-              <p>${totalPrice}</p>
+              <span>${totalPrice}</span>
             </div>
             <p className=" text-sm text-gray-500 font-light">
               Shipping and taxes will be calculated at checkout.

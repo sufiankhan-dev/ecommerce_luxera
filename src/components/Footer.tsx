@@ -45,6 +45,15 @@ const Footer = () => {
               <span className="cursor-pointer">UAN: 042 111-12-6423</span>
               <span>MON-FRI 9:00 to 5:30 PSt</span>
             </div>
+            <span className="text-[11px] text-gray-400 flex lg:hidden">
+              Created By Sufian! For inquiries, contact:
+              <Link
+                href={"mailto:sufiancoding@gmail.com"}
+                className="text-blue-600 underline pl-1"
+              >
+                sufiancoding@gmail.com
+              </Link>
+            </span>
           </div>
           {/* MENU END */}
 
@@ -143,7 +152,16 @@ const Footer = () => {
           © 2024 <Link href={"/"}>Luxera</Link>, Inc. All Rights Reserved
         </div>
         {/* LEFT END */}
-
+        <span className="text-[11px] text-gray-400 hidden lg:flex">
+          Created By Sufian! For inquiries, contact:
+          <Link
+            target="_blank"
+            href={"mailto:sufiancoding@gmail.com"}
+            className="text-blue-600 underline pl-1"
+          >
+            sufiancoding@gmail.com
+          </Link>
+        </span>
         {/* RIGHT START */}
         <div className="flex gap-2 md:gap-5 text-center md:text-left flex-wrap justify-center">
           {Bottomlinks.map((items, index) => (
