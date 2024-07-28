@@ -160,7 +160,9 @@ const page = async ({ params }: { params: { slug: string } }) => {
                 description={data.description}
                 image={data.image[0]}
                 name={data.name}
-                price={data.price}
+                price={
+                  discountedPrice ? parseFloat(discountedPrice) : data.price
+                }
                 key={data._id}
                 price_id={data.price_id}
               />

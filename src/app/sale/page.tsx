@@ -1,12 +1,12 @@
 import React from "react";
-import { client } from "../../sanity/lib/client";
-import { simplifiedProduct } from "../../type";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Flame } from "lucide-react";
 import Image from "next/image";
+import { simplifiedProduct } from "../../../type";
+import { client } from "../../../sanity/lib/client";
 
 async function getData() {
-  const query = `*[_type == 'product'][0...4] | order(_createdAt desc){
+  const query = `*[_type == 'product' && salePercent > 49]{
   _id,
     price,
     name,
@@ -22,26 +22,17 @@ async function getData() {
   return data;
 }
 
-const Newest = async () => {
+const Sale = async () => {
   const data: simplifiedProduct[] = await getData();
 
   return (
     <div className="bg-white">
       <div className="mx-auto mx-w-2xl px-4 py-5 sm:px-6 sm:py-10 lg:mx-w-7xl lg:px-32">
         <div className="flex justify-between items-center">
-          <h2 className="uppercase text-xl md:text-2xl font-medium tracking-tight text-gray-900">
-            Our Latest Collection
+          <h2 className="text-xl md:text-2xl font-medium tracking-tight text-gray-900 uppercase flex flex-row gap-x-2 items-center">
+            <Flame className="text-red-600" />
+            HOT ITEMS UPTO 70% OFF
           </h2>
-
-          <Link
-            className="text-primary flex items-center gap-x-1"
-            href={"/all"}
-          >
-            All Products{" "}
-            <span>
-              <ArrowRight />
-            </span>
-          </Link>
         </div>
 
         <div className="mt-6 grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
@@ -63,8 +54,8 @@ const Newest = async () => {
                       className="object-cover w-full h-full object-center lg:h-full lg:w-full"
                       width={300}
                       height={300}
-                      quality={100}
                       priority
+                      quality={100}
                     />
                   </div>
 
@@ -128,4 +119,4 @@ const Newest = async () => {
   );
 };
 
-export default Newest;
+export default Sale;

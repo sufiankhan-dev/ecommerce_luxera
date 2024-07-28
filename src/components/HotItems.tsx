@@ -2,11 +2,11 @@ import React from "react";
 import { client } from "../../sanity/lib/client";
 import { simplifiedProduct } from "../../type";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Flame } from "lucide-react";
 import Image from "next/image";
 
 async function getData() {
-  const query = `*[_type == 'product'][0...4] | order(_createdAt desc){
+  const query = `*[_type == 'product' && salePercent == 70][0...4]{
   _id,
     price,
     name,
@@ -22,22 +22,23 @@ async function getData() {
   return data;
 }
 
-const Newest = async () => {
+const HotItems = async () => {
   const data: simplifiedProduct[] = await getData();
 
   return (
     <div className="bg-white">
       <div className="mx-auto mx-w-2xl px-4 py-5 sm:px-6 sm:py-10 lg:mx-w-7xl lg:px-32">
         <div className="flex justify-between items-center">
-          <h2 className="uppercase text-xl md:text-2xl font-medium tracking-tight text-gray-900">
-            Our Latest Collection
+          <h2 className="uppercase text-xl md:text-2xl font-medium tracking-tight text-gray-900 flex flex-row items-center gap-x-2">
+            <Flame className="text-red-600" />
+            Hot Items
           </h2>
 
           <Link
             className="text-primary flex items-center gap-x-1"
-            href={"/all"}
+            href={"/sale"}
           >
-            All Products{" "}
+            View All{" "}
             <span>
               <ArrowRight />
             </span>
@@ -128,4 +129,4 @@ const Newest = async () => {
   );
 };
 
-export default Newest;
+export default HotItems;

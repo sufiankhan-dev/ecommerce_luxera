@@ -6,7 +6,7 @@ import { simplifiedProduct } from "../../../type";
 import { client } from "../../../sanity/lib/client";
 
 async function getData() {
-  const query = `*[_type == 'product'] | order(_createdAt desc){
+  const query = `*[_type == 'product']{
   _id,
     price,
     name,
@@ -22,7 +22,7 @@ async function getData() {
   return data;
 }
 
-const Newest = async () => {
+const All = async () => {
   const data: simplifiedProduct[] = await getData();
 
   return (
@@ -118,4 +118,4 @@ const Newest = async () => {
   );
 };
 
-export default Newest;
+export default All;

@@ -7,6 +7,7 @@ import { Carousel } from "react-responsive-carousel";
 import { BiArrowBack } from "react-icons/bi";
 import { urlForImage } from "../../sanity/lib/image";
 import Image from "next/image";
+import Link from "next/link";
 
 interface BannerImages {
   image1: any;
@@ -49,9 +50,11 @@ const Hero = ({ image1, image2, image3 }: BannerImages) => {
             src={urlForImage(image1)}
             className="aspect-[16/10] md:aspect-auto object-cover"
           />
-          <div className="px-[12px] md:px-[25px] py-[7px] md:py-[15px] font-oswald bg-white absolute bottom-[15px] md:bottom-[35px] left-0 text-black/[0.9] text-[12px] md:text-[22px] uppercase font-semibold cursor-pointer hover:opacity-90">
-            Shop now
-          </div>
+          <Link href={"/category/women"}>
+            <div className="px-[12px] md:px-[25px] py-[7px] md:py-[15px] font-oswald bg-white absolute bottom-[15px] md:bottom-[35px] left-0 text-black/[0.9] text-[12px] md:text-[22px] uppercase font-semibold cursor-pointer hover:opacity-90">
+              Shop now
+            </div>
+          </Link>
         </div>
 
         <div>
@@ -63,9 +66,11 @@ const Hero = ({ image1, image2, image3 }: BannerImages) => {
             src={urlForImage(image2)}
             className="aspect-[16/10] md:aspect-auto object-cover"
           />
-          <div className="px-[12px] md:px-[25px] py-[7px] md:py-[15px] font-oswald bg-white absolute bottom-[15px] md:bottom-[35px] left-0 text-black/[0.9] text-[12px] md:text-[22px] uppercase font-semibold cursor-pointer hover:opacity-90">
-            Shop now
-          </div>
+          <Link href={"/sale"}>
+            <div className="px-[12px] md:px-[25px] py-[7px] md:py-[15px] font-oswald bg-white absolute bottom-[15px] md:bottom-[35px] left-0 text-black/[0.9] text-[12px] md:text-[22px] uppercase font-semibold cursor-pointer hover:opacity-90">
+              Shop now
+            </div>
+          </Link>
         </div>
 
         <div>
@@ -77,9 +82,11 @@ const Hero = ({ image1, image2, image3 }: BannerImages) => {
             src={urlForImage(image3)}
             className="aspect-[16/10] md:aspect-auto object-cover"
           />
-          <div className="px-[12px] md:px-[25px] py-[7px] md:py-[15px] font-oswald bg-white absolute bottom-[15px] md:bottom-[35px] left-0 text-black/[0.9] text-[12px] md:text-[22px] uppercase font-semibold cursor-pointer hover:opacity-90">
-            Shop now
-          </div>
+          <Link href={"/category/men"}>
+            <div className="px-[12px] md:px-[25px] py-[7px] md:py-[15px] font-oswald bg-white absolute bottom-[15px] md:bottom-[35px] left-0 text-black/[0.9] text-[12px] md:text-[22px] uppercase font-semibold cursor-pointer hover:opacity-90">
+              Shop now
+            </div>
+          </Link>
         </div>
       </Carousel>
     </div>

@@ -14,18 +14,28 @@ interface Props {
 const DescriptionDropdown = ({ description, compositionAndCare }: Props) => {
   return (
     <div>
-      <Accordion type="single" collapsible className="w-full md:hidden mt-3">
+      <Accordion
+        type="single"
+        collapsible
+        className="w-full md:hidden mt-3"
+        defaultValue="item-1"
+      >
         <AccordionItem value="item-1">
           <AccordionTrigger className="uppercase font-bold text-sm">
             Description
           </AccordionTrigger>
           <AccordionContent>
-            <span className="uppercase font-bold text-sm">
-              Product Description:
-            </span>
-            <p className="my-4 text-sm text-gray-700 leading-relaxed uppercase">
-              {description}
-            </p>
+            {description && (
+              <div>
+                <span className="uppercase font-bold text-sm">
+                  Product Description:
+                </span>
+                <p className="my-4 text-sm text-gray-700 leading-relaxed uppercase">
+                  {description}
+                </p>
+              </div>
+            )}
+
             {compositionAndCare && compositionAndCare.length > 0 && (
               <div className="uppercase flex-col pt-5">
                 <span className="font-bold text-sm">Composition & Care</span>
