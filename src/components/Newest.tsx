@@ -30,7 +30,7 @@ const Newest = async () => {
       <div className="mx-auto mx-w-2xl px-4 py-5 sm:px-6 sm:py-10 lg:mx-w-7xl lg:px-32">
         <div className="flex justify-between items-center">
           <h2 className="uppercase text-xl md:text-2xl font-medium tracking-tight text-gray-900">
-            Our Latest Collection
+            Latest Collection
           </h2>
 
           <Link
