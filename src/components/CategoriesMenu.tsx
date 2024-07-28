@@ -10,14 +10,7 @@ import {
 } from "@/components/ui/sheet";
 import Link from "next/link";
 import { useState } from "react";
-import {
-  ArrowRight,
-  LogInIcon,
-  LogOutIcon,
-  Truck,
-  TruckIcon,
-  User,
-} from "lucide-react";
+import { ArrowRight, LogOutIcon, TruckIcon, User } from "lucide-react";
 import { Button } from "./ui/button";
 import { signIn, signOut, useSession } from "next-auth/react";
 
@@ -31,7 +24,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import { Switch } from "./ui/switch";
-import { Label } from "./ui/label";
 
 export interface CategoryProps {
   MensData: Array<{ collectionName: string; collectionSlug: string }>;

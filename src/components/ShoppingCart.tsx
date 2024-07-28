@@ -12,7 +12,6 @@ import { useShoppingCart } from "use-shopping-cart";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import { useSession, signIn } from "next-auth/react";
-import Link from "next/link";
 import { BiErrorCircle } from "react-icons/bi";
 
 const ShoppingCart = () => {

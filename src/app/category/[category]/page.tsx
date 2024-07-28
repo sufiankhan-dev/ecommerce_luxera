@@ -60,9 +60,6 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
                       <h3 className="text-sm text-gray-700 uppercase max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap">
                         {product.name}
                       </h3>
-                      {/* <p className="mt-1 text-sm text-gray-500">
-                      {product.categoryName}
-                    </p> */}
                       {product.colors && (
                         <div className="flex gap-x-8 items-center">
                           <div className="flex gap-x-1">
@@ -79,9 +76,6 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
                       )}
                     </div>
                     <div>
-                      {/* <p className="text-sm font-medium text-gray-900">
-                        ${product.price}
-                      </p> */}
                       <div className="text-sm text-gray-900">
                         {product.salePercent ? (
                           <div className="flex flex-row gap-x-3">

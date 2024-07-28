@@ -1,9 +1,7 @@
 import React from "react";
 import { client } from "../../../../sanity/lib/client";
-import { DeliveryAndReturnData, fullProductData } from "../../../../type";
+import { fullProductData } from "../../../../type";
 import ImageCarousel from "../../../components/ImageCarousel";
-import { Circle } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import DeliveryAndReturnDialog from "@/components/DeliveryAndReturnDailog";
 import AddToCart from "@/components/AddToCart";
 import RelatedProducts from "@/components/RelatedProducts";
@@ -68,9 +66,6 @@ const page = async ({ params }: { params: { slug: string } }) => {
           <ImageCarousel image={data.image} />
           <div className="md:py-8">
             <div className="mb-2 md:mb-3 flex gap-y-2 flex-col">
-              {/* <span className="mb-0.5 inline-block text-gray-500">
-                {data.categoryName}
-              </span> */}
               <h2 className="text-2xl font-bold leading-relaxed text-gray-900 lg:text-xl uppercase">
                 {data.name}
               </h2>
@@ -78,14 +73,6 @@ const page = async ({ params }: { params: { slug: string } }) => {
                 L1001/{data._id}
               </p>
               {/* price of product  */}
-              {/* <div className="flex flex-row items-baseline gap-x-2">
-                <span className="text-xl font-bold text-gray-900 md:text-lg">
-                  Price: ${data.price}
-                </span>
-                <span className="text-[14px] text-gray-600 line-through">
-                  ${data.price + 10}
-                </span>
-              </div> */}
               <div className="flex flex-row items-baseline gap-x-2">
                 {data.salePercent ? (
                   <div className="flex flex-row gap-x-3">

@@ -8,7 +8,7 @@ import Layout from "@/components/Layout";
 import CartProvider from "@/components/Providers";
 import ShoppingCart from "@/components/ShoppingCart";
 import { client } from "../../sanity/lib/client";
-import { CategoriesItems, fullProductData } from "../../type";
+import { CategoriesItems } from "../../type";
 
 const inter = Inter({ subsets: ["latin"] });
 const robotoCondensed = Roboto_Condensed({ subsets: ["latin"] });

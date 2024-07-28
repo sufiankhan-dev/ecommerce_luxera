@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { LogInIcon, LogOutIcon, User } from "lucide-react";
+import { LogOutIcon, User } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
