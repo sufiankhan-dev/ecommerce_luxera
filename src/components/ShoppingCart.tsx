@@ -126,7 +126,7 @@ const ShoppingCart = () => {
                               onClick={() => removeItem(entry.id)}
                             >
                               <Trash2 className="h-4 w-5" />
-                              Remove
+                              <span className="hidden sm:flex">Remove</span>
                             </button>
                           </div>
                         </div>
