@@ -29,7 +29,7 @@ const HotItems = async () => {
     <div className="bg-white">
       <div className="mx-auto mx-w-2xl px-4 py-5 sm:px-6 sm:py-10 lg:mx-w-7xl lg:px-32">
         <div className="flex justify-between items-center">
-          <h2 className="uppercase text-xl md:text-2xl font-medium tracking-tight text-gray-900 flex flex-row items-center gap-x-2">
+          <h2 className="underline text-xl md:text-2xl font-bold tracking-tight text-gray-900 flex flex-row items-center gap-x-2">
             <Flame className="text-red-600" />
             Hot Items
           </h2>
