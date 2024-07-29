@@ -56,11 +56,11 @@ const Newest = async () => {
             return (
               <div key={product._id} className="group relative">
                 <Link href={`/product/${product.slug}`}>
-                  <div className="aspect-square w-full overflow-hidden bg-gray-200 group-hover:opacity-75 lg:h-80">
+                  <div className="aspect-square w-full overflow-hidden bg-newgray group-hover:opacity-75 lg:h-80">
                     <Image
                       src={product.imageUrl}
                       alt="Product Image"
-                      className="object-cover w-full h-full object-center lg:h-full lg:w-full"
+                      className="object-contain w-full h-full object-center lg:h-full lg:w-full"
                       width={300}
                       height={300}
                       quality={100}
