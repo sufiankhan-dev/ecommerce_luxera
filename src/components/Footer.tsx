@@ -28,7 +28,7 @@ const Bottomlinks = [
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white pt-14 pb-3">
+    <footer className="bg-black text-white dark:bg-gray-900 dark:text-gray-100 pt-14 pb-3">
       <Wrapper className="flex justify-between flex-col md:flex-row gap-[50px] md:gap-0 mb-8">
         {/* LEFT START */}
         <div className="flex gap-[50px] md:gap-[75px] lg:gap-[100px] flex-col md:flex-row">
@@ -37,7 +37,7 @@ const Footer = () => {
             <div className="tracking-widest uppercase text-sm">
               Can we help you?
             </div>
-            <div className="tracking-widest uppercase text-[12px] flex gap-x-24  md:gap-0 flex-col leading-relaxed">
+            <div className="tracking-widest uppercase text-[12px] flex gap-x-24 md:gap-0 flex-col leading-relaxed">
               <span>Send Email</span>
               <span className="cursor-pointer">Contactus@luxera.com.pk</span>
             </div>
@@ -49,7 +49,7 @@ const Footer = () => {
               Created By Sufian! For inquiries, contact:
               <Link
                 href={"mailto:sufiancoding@gmail.com"}
-                className="text-blue-600 underline pl-1"
+                className="text-blue-600 dark:text-blue-400 underline pl-1"
               >
                 sufiancoding@gmail.com
               </Link>
@@ -66,7 +66,7 @@ const Footer = () => {
                 <div key={index}>
                   <Link
                     href={items.href}
-                    className="text-[12px] tracking-widest uppercase hover:text-gray-400"
+                    className="text-[12px] tracking-widest uppercase hover:text-gray-400 dark:hover:text-gray-300"
                   >
                     {items.name}
                   </Link>
@@ -84,7 +84,7 @@ const Footer = () => {
                 <div key={index}>
                   <Link
                     href={items.href}
-                    className="text-[12px] tracking-widest uppercase hover:text-gray-400"
+                    className="text-[12px] tracking-widest uppercase hover:text-gray-400 dark:hover:text-gray-300"
                   >
                     {items.name}
                   </Link>
@@ -102,25 +102,25 @@ const Footer = () => {
           <div className="flex flex-row gap-4 justify-center md:justify-start">
             <Link
               href={"https://facebook.com"}
-              className="w-10 h-10 rounded-full bg-white/[0.25] flex items-center justify-center text-black hover:bg-white/[0.5] cursor-pointer"
+              className="w-10 h-10 rounded-full bg-white/[0.25] dark:bg-gray-700 flex items-center justify-center text-black dark:text-white hover:bg-white/[0.5] dark:hover:bg-gray-600 cursor-pointer"
             >
               <FaFacebookF size={20} />
             </Link>
             <Link
               href="https://twitter.com"
-              className="w-10 h-10 rounded-full bg-white/[0.25] flex items-center justify-center text-black hover:bg-white/[0.5] cursor-pointer"
+              className="w-10 h-10 rounded-full bg-white/[0.25] dark:bg-gray-700 flex items-center justify-center text-black dark:text-white hover:bg-white/[0.5] dark:hover:bg-gray-600 cursor-pointer"
             >
               <FaTwitter size={20} />
             </Link>
             <Link
               href={"https://youtube.com"}
-              className="w-10 h-10 rounded-full bg-white/[0.25] flex items-center justify-center text-black hover:bg-white/[0.5] cursor-pointer"
+              className="w-10 h-10 rounded-full bg-white/[0.25] dark:bg-gray-700 flex items-center justify-center text-black dark:text-white hover:bg-white/[0.5] dark:hover:bg-gray-600 cursor-pointer"
             >
               <FaYoutube size={20} />
             </Link>
             <Link
               href={"https://instagram.com"}
-              className="w-10 h-10 rounded-full bg-white/[0.25] flex items-center justify-center text-black hover:bg-white/[0.5] cursor-pointer"
+              className="w-10 h-10 rounded-full bg-white/[0.25] dark:bg-gray-700 flex items-center justify-center text-black dark:text-white hover:bg-white/[0.5] dark:hover:bg-gray-600 cursor-pointer"
             >
               <FaInstagram size={20} />
             </Link>
@@ -148,7 +148,7 @@ const Footer = () => {
       <hr />
       <Wrapper className="flex items-center justify-between mt-4 flex-col md:flex-row gap-[10px] md:gap-0">
         {/* LEFT START */}
-        <div className="text-[12px] text-white text-center md:text-left uppercase">
+        <div className="text-[12px] text-white dark:text-gray-100 text-center md:text-left uppercase">
           © 2024 <Link href={"/"}>Luxera</Link>, Inc. All Rights Reserved
         </div>
         {/* LEFT END */}
@@ -157,7 +157,7 @@ const Footer = () => {
           <Link
             target="_blank"
             href={"mailto:sufiancoding@gmail.com"}
-            className="text-blue-600 underline pl-1"
+            className="text-blue-600 dark:text-blue-400 underline pl-1"
           >
             sufiancoding@gmail.com
           </Link>
@@ -168,7 +168,7 @@ const Footer = () => {
             <div key={index}>
               <Link
                 href={items.href}
-                className="text-[12px] tracking-widest uppercase hover:text-gray-400"
+                className="text-[12px] tracking-widest uppercase hover:text-gray-400 dark:hover:text-gray-300"
               >
                 {items.name}
               </Link>

@@ -34,7 +34,7 @@ const AddToCart = ({
   };
   return (
     <Button
-      className="w-full bg-black rounded-none uppercase font-normal"
+      className="w-full bg-black rounded-none uppercase font-normal hover:bg-gray-800 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
       onClick={() => {
         addItem(product), handleCartClick();
       }}

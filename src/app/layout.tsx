@@ -9,6 +9,7 @@ import CartProvider from "@/components/Providers";
 import ShoppingCart from "@/components/ShoppingCart";
 import { client } from "../../sanity/lib/client";
 import { CategoriesItems } from "../../type";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 const robotoCondensed = Roboto_Condensed({ subsets: ["latin"] });
@@ -53,14 +54,21 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={robotoCondensed.className}>
-        <Layout>
-          <CartProvider>
-            <Navbar Mensdata={Mensdata} Womensdata={WomensData} />
-            <ShoppingCart />
-            {children}
-            <Footer />
-          </CartProvider>
-        </Layout>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Layout>
+            <CartProvider>
+              <Navbar Mensdata={Mensdata} Womensdata={WomensData} />
+              <ShoppingCart />
+              {children}
+              <Footer />
+            </CartProvider>
+          </Layout>
+        </ThemeProvider>
       </body>
     </html>
   );

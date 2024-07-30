@@ -8,7 +8,7 @@ async function getData(category: string) {
   const query = `*[_type == 'product' && category->name == "${category}"]{
   _id,
     "imageUrl": image[0].asset->url,
-      price,
+    price,
     name,
     "slug": slug.current,
     "categoryName": category->name,
@@ -23,10 +23,10 @@ async function getData(category: string) {
 const CategoryPage = async ({ params }: { params: { category: string } }) => {
   const data: simplifiedProduct[] = await getData(params.category);
   return (
-    <div className="bg-white">
-      <div className="mx-auto mx-w-2xl px-4 py-5 sm:px-6 lg:mx-w-7xl lg:px-32">
+    <div>
+      <div className="mx-auto max-w-screen-xl px-4 py-5 sm:px-6 lg:px-32">
         <div className="flex justify-between items-center">
-          <h2 className="text-xl md:text-2xl font-medium tracking-tight text-gray-900 uppercase">
+          <h2 className="text-xl md:text-2xl font-medium tracking-tight text-gray-900 dark:text-gray-100 uppercase">
             {params.category}'s Collection
           </h2>
         </div>
@@ -47,7 +47,7 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
                     <Image
                       src={product.imageUrl}
                       alt="Product Image"
-                      className="object-contain w-full h-full object-center lg:h-full lg:w-full" //object cover changed to object contain
+                      className="object-contain w-full h-full object-center lg:h-full lg:w-full"
                       width={300}
                       height={300}
                       priority
@@ -57,7 +57,7 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
 
                   <div className="mt-4 flex-col justify-between">
                     <div className="flex flex-row justify-between">
-                      <h3 className="text-sm text-gray-700 uppercase max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap">
+                      <h3 className="text-sm text-gray-700 dark:text-gray-300 uppercase max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap">
                         {product.name}
                       </h3>
                       {product.colors && (
@@ -66,7 +66,7 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
                             {product.colors.map((color: any, index: any) => (
                               <div
                                 key={index}
-                                className="w-3 h-3 rounded-full border border-black cursor-pointer"
+                                className="w-3 h-3 rounded-full border border-black dark:border-gray-600 cursor-pointer"
                                 style={{ backgroundColor: color }}
                                 title={color} // Display hex code as a tooltip
                               />
@@ -76,18 +76,18 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
                       )}
                     </div>
                     <div>
-                      <div className="text-sm text-gray-900">
+                      <div className="text-sm text-gray-900 dark:text-gray-100">
                         {product.salePercent ? (
                           <div className="flex flex-row gap-x-3">
-                            <span className="line-through text-gray-500">
+                            <span className="line-through text-gray-500 dark:text-gray-400">
                               ${product.price.toFixed(2)}
                             </span>{" "}
-                            <div className="bg-yellow-300 flex flex-row px-2 gap-x-3">
-                              <span className="text-black">
+                            <div className="bg-yellow-300 dark:bg-yellow-600 flex flex-row px-2 gap-x-3">
+                              <span className="text-black dark:text-gray-200">
                                 ${discountedPrice}
                               </span>
                               {product.salePercent && (
-                                <p className="text-black">
+                                <p className="text-black dark:text-gray-200">
                                   -{product.salePercent}%
                                 </p>
                               )}

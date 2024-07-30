@@ -7,7 +7,7 @@ import Image from "next/image";
 
 async function getData() {
   const query = `*[_type == 'product'][0...4] | order(_createdAt desc){
-  _id,
+    _id,
     price,
     name,
     "slug": slug.current,
@@ -15,7 +15,7 @@ async function getData() {
     "imageUrl": image[0].asset->url,
     salePercent,
     colors
-}`;
+  }`;
 
   const data = await client.fetch(query);
 
@@ -26,15 +26,15 @@ const Newest = async () => {
   const data: simplifiedProduct[] = await getData();
 
   return (
-    <div className="bg-white">
-      <div className="mx-auto mx-w-2xl px-4 py-5 sm:px-6 sm:py-10 lg:mx-w-7xl lg:px-32">
+    <div>
+      <div className="mx-auto max-w-2xl px-4 py-5 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-32">
         <div className="flex justify-between items-center">
-          <h2 className="text-xl md:text-2xl font-bold underline tracking-tight text-gray-900">
+          <h2 className="text-xl md:text-2xl font-bold underline tracking-tight text-gray-900 dark:text-white">
             Latest Collection
           </h2>
 
           <Link
-            className="text-primary flex items-center gap-x-1"
+            className="text-primary dark:text-blue-600 flex items-center gap-x-1"
             href={"/all"}
           >
             All Products{" "}
@@ -70,7 +70,7 @@ const Newest = async () => {
 
                   <div className="mt-4 flex-col justify-between">
                     <div className="flex flex-row justify-between">
-                      <h3 className="text-sm text-gray-700 uppercase max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap">
+                      <h3 className="text-sm text-gray-700 dark:text-gray-300 uppercase max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap">
                         {product.name}
                       </h3>
                       {product.colors && (
@@ -79,7 +79,7 @@ const Newest = async () => {
                             {product.colors.map((color: any, index: any) => (
                               <div
                                 key={index}
-                                className="w-3 h-3 rounded-full border border-black cursor-pointer"
+                                className="w-3 h-3 rounded-full border border-black dark:border-gray-300 cursor-pointer"
                                 style={{ backgroundColor: color }}
                                 title={color} // Display hex code as a tooltip
                               />
@@ -89,18 +89,18 @@ const Newest = async () => {
                       )}
                     </div>
                     <div>
-                      <div className="text-sm text-gray-900">
+                      <div className="text-sm text-gray-900 dark:text-gray-100">
                         {product.salePercent ? (
                           <div className="flex flex-row gap-x-3">
-                            <span className="line-through text-gray-500">
+                            <span className="line-through text-gray-500 dark:text-gray-400">
                               ${product.price.toFixed(2)}
                             </span>{" "}
-                            <div className="bg-yellow-300 flex flex-row px-2 gap-x-3">
-                              <span className="text-black">
+                            <div className="bg-yellow-300 dark:bg-yellow-600 flex flex-row px-2 gap-x-3">
+                              <span className="text-black dark:text-white">
                                 ${discountedPrice}
                               </span>
                               {product.salePercent && (
-                                <p className="text-black">
+                                <p className="text-black dark:text-white">
                                   -{product.salePercent}%
                                 </p>
                               )}

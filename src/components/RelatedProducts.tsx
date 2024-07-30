@@ -4,10 +4,10 @@ import Image from "next/image";
 
 const RelatedProducts = ({ products }: any) => {
   return (
-    <div className="bg-white">
+    <div>
       <div className="mx-auto max-w-screen-xl px-2 md:px-8 py-3 sm:py-10">
         <div className="flex justify-between items-center">
-          <h2 className="text-xl md:text-2xl font-bold tracking-tight text-gray-900 uppercase">
+          <h2 className="text-xl md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white uppercase">
             Recommended Products
           </h2>
         </div>
@@ -37,7 +37,7 @@ const RelatedProducts = ({ products }: any) => {
 
                   <div className="mt-4 flex-col justify-between">
                     <div className="flex flex-row justify-between">
-                      <h3 className="text-sm text-gray-700 uppercase max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap">
+                      <h3 className="text-sm text-gray-700 dark:text-gray-300 uppercase max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap">
                         {product.name}
                       </h3>
                       {product.colors && (
@@ -46,7 +46,7 @@ const RelatedProducts = ({ products }: any) => {
                             {product.colors.map((color: any, index: any) => (
                               <div
                                 key={index}
-                                className="w-3 h-3 rounded-full border border-black cursor-pointer"
+                                className="w-3 h-3 rounded-full border dark:border-gray-300 cursor-pointer"
                                 style={{ backgroundColor: color }}
                                 title={color} // Display hex code as a tooltip
                               />
@@ -56,18 +56,18 @@ const RelatedProducts = ({ products }: any) => {
                       )}
                     </div>
                     <div>
-                      <div className="text-sm text-gray-900">
+                      <div className="text-sm text-gray-900 dark:text-gray-100">
                         {product.salePercent ? (
                           <div className="flex flex-row gap-x-3">
-                            <span className="line-through text-gray-500">
+                            <span className="line-through text-gray-500 dark:text-gray-400">
                               ${product.price.toFixed(2)}
                             </span>{" "}
-                            <div className="bg-yellow-300 flex flex-row px-2 gap-x-3">
-                              <span className="text-black">
+                            <div className="bg-yellow-300 dark:bg-yellow-600 flex flex-row px-2 gap-x-3">
+                              <span className="text-black dark:text-white">
                                 ${discountedPrice}
                               </span>
                               {product.salePercent && (
-                                <p className="text-black">
+                                <p className="text-black dark:text-white">
                                   -{product.salePercent}%
                                 </p>
                               )}

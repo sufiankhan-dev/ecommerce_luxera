@@ -8,10 +8,10 @@ const page = () => {
       <div className="mt-32 md:max-w-[50vw] mx-auto">
         <BadgeCheck className="text-green-600 w-16 h-16 mx-auto my-6" />
         <div className="text-center">
-          <h3 className="md:text-2xl text-base text-gray-900 font-semibold text-center capitalize">
+          <h3 className="md:text-2xl text-base text-gray-900 dark:text-white font-semibold text-center capitalize">
             Payment successfully done!
           </h3>
-          <p className="text-gray-600 mt-2 capitalize">
+          <p className="text-gray-600 dark:text-gray-400 mt-2 capitalize">
             Thanks for shopping We hope you enjoy it
           </p>
         </div>

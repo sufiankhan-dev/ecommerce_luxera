@@ -9,7 +9,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, LogOutIcon, TruckIcon, User } from "lucide-react";
 import { Button } from "./ui/button";
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import { Switch } from "./ui/switch";
+import { useTheme } from "next-themes";
 
 export interface CategoryProps {
   MensData: Array<{ collectionName: string; collectionSlug: string }>;
@@ -38,12 +39,24 @@ export default function CategoriesMenu({
     "men"
   );
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const closeSheet = () => {
     setIsSheetOpen(false);
   };
 
   const { data: session } = useSession();
+  const { setTheme, theme } = useTheme();
+
+  useEffect(() => {
+    setIsDarkMode(theme === "dark");
+  }, [theme]);
+
+  const handleThemeSwitch = () => {
+    const newTheme = isDarkMode ? "light" : "dark";
+    setTheme(newTheme);
+    setIsDarkMode(!isDarkMode);
+  };
 
   return (
     <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
@@ -58,7 +71,11 @@ export default function CategoriesMenu({
       <SheetContent side={"left"} className="sm:max-w-md w-[90vw] pl-10">
         <SheetHeader>
           <SheetTitle className="text-2xl md:text-4xl text-gray-900 font-extrabold italic -mt-2">
-            <Link href={"/"} className="cursor-pointer" onClick={closeSheet}>
+            <Link
+              href={"/"}
+              className="cursor-pointer dark:text-white"
+              onClick={closeSheet}
+            >
               Luxera
             </Link>
           </SheetTitle>
@@ -140,7 +157,11 @@ export default function CategoriesMenu({
         </div>
         <div className="flex items-center space-x-2 pt-2">
           <p className="uppercase font-bold">Dark Mode</p>
-          <Switch />
+          <Switch
+            checked={isDarkMode}
+            onCheckedChange={handleThemeSwitch}
+            onClick={closeSheet}
+          />
         </div>
         <div className="absolute bottom-0 left-0 right-0 flex md:hidden justify-between p-4 items-center">
           <Link
