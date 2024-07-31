@@ -22,6 +22,7 @@ const ImageCarousel = ({ image }: ImageProps) => {
             key={index}
             className="overflow-hidden rounded-md bg-gray-100 max-w-xs max-h-32"
           >
+            {/* Image Tag */}
             <Image
               src={urlForImage(image)}
               width={200}
