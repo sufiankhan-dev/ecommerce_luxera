@@ -9,6 +9,7 @@ export interface simplifiedProduct {
   colors: any;
 }
 
+// full products type
 export interface fullProductData {
   _id: string;
   image: any;
